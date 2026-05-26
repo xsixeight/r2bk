@@ -108,21 +108,21 @@ async def get_account(update: Update, context: ContextTypes.DEFAULT_TYPE):
     account_info = ACCOUNTS_MAP[context.user_data["account"]]
     stream_id = STREAMS_MAP[context.user_data["category"]]
 
-    payload = [{
-        "paymentDate":         context.user_data["date"],
-        "internalPaymentDate": context.user_data["date"],
-        "paymentSum":          context.user_data["amount"],
-        "paymentPurpose":      context.user_data["category"],
-        "accountId":           account_info["accountId"],
-        "organisationId":      account_info["organisationId"],
-        "factStreamId":        stream_id,
-        "operationTypeId":     411,
-        "directionId":         510,
-        "sourceCurrencyId":    "RUB",
-        "sourcePaymentSum":    context.user_data["amount"],
-        "paymentStatusId":     531,
-        "priorityId":          532,
-    }]
+   payload = [{
+    "externalId":          "",
+    "paymentDate":         context.user_data["date"],
+    "internalPaymentDate": context.user_data["date"],
+    "paymentSum":          context.user_data["amount"],
+    "paymentPurpose":      context.user_data["category"],
+    "accountId":           account_info["accountId"],
+    "organisationId":      account_info["organisationId"],
+    "operationTypeId":     411,
+    "directionId":         510,
+    "sourceCurrencyId":    "RUB",
+    "sourcePaymentSum":    context.user_data["amount"],
+    "paymentStatusId":     531,
+    "priorityId":          532,
+}]
 
     headers = {
         "X-API-KEY": MONEY_SELLERS_API_KEY,
