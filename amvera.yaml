@@ -1,0 +1,8 @@
+meta:
+  environment: python
+  toolchain:
+    name: pip
+    version: 3.13
+
+run:
+  command: python r2bk.py
