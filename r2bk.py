@@ -108,6 +108,7 @@ async def get_account(update: Update, context: ContextTypes.DEFAULT_TYPE):
     account_info = ACCOUNTS_MAP[context.user_data["account"]]
 
     payload = [{
+        "externalId": None,
         "paymentDate":         context.user_data["date"],
         "internalPaymentDate": context.user_data["date"],
         "paymentSum":          context.user_data["amount"],
