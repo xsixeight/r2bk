@@ -71,14 +71,16 @@ async def get_account(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def get_project(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["project"] = update.message.text
+    keyboard = [["Пропустить"]]
     await update.message.reply_text(
-        "Введи примечание или нажми /skip чтобы пропустить:",
-        reply_markup=ReplyKeyboardRemove()
+        "Введи примечание или нажми кнопку Пропустить:",
+        reply_markup=ReplyKeyboardMarkup(keyboard, one_time_keyboard=True, resize_keyboard=True)
     )
     return NOTE
 
 async def get_note(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    context.user_data["note"] = update.message.text
+    text = update.message.text
+    context.user_data["note"] = "" if text == "Пропустить" else text
     await save_and_respond(update, context)
     return ConversationHandler.END
 
@@ -134,7 +136,6 @@ def main():
             PROJECT:  [MessageHandler(filters.TEXT & ~filters.COMMAND, get_project)],
             NOTE:     [
                 MessageHandler(filters.TEXT & ~filters.COMMAND, get_note),
-                CommandHandler("skip", skip_note)
             ],
         },
         fallbacks=[CommandHandler("cancel", cancel)]
