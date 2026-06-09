@@ -19,9 +19,11 @@ DATE, AMOUNT, CATEGORY, ACCOUNT, PROJECT, NOTE = range(6)
 logging.basicConfig(level=logging.INFO)
 
 CATEGORIES = [
-    ["Зарплата", "Аренда"],
-    ["Маркетинг", "Транспорт"],
-    ["Прочее", "Закупка товара"]
+    ["Оплата труда", "Расходы на самовыкупы"],
+    ["Хозрасходы офис/склад", "Аренда офис+склад"],
+    ["Сервисы ИТ, подписки и т.п.", "Юридические услуги"],
+    ["Связь, Интернет", "Дивиденды", "Прочие административные расходы"],
+    ["Командировочные (билеты, суточные, проживание)"]
 ]
 
 ACCOUNTS = [
@@ -30,7 +32,7 @@ ACCOUNTS = [
 ]
 
 PROJECTS = [
-    ["univeles", "graffix"]
+    ["UNIVELES", "GRAFFIX"]
 ]
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
