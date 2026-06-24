@@ -39,7 +39,7 @@ PROJECTS = [
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "Привет! Я помогу записать расход.\n\nВведи дату операции в формате ДД.ММ.ГГГГ:",
+        "Привет! Я помогу записать операцию.\n\nВведи дату операции в формате ДД.ММ.ГГГГ:",
         reply_markup=ReplyKeyboardRemove()
     )
     return DATE
