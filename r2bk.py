@@ -52,7 +52,7 @@ async def get_date(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def get_amount(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["amount"] = update.message.text
     await update.message.reply_text(
-        "Выбери статью расхода:",
+        "Выбери статью:",
         reply_markup=ReplyKeyboardMarkup(CATEGORIES, one_time_keyboard=True, resize_keyboard=True)
     )
     return CATEGORY
@@ -105,7 +105,7 @@ async def save_and_respond(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     try:
         requests.post(APPS_SCRIPT_URL, json=data)
-        keyboard = [["💸 Внести расход"]]
+        keyboard = [["💸 Внести операцию"]]
         note_line = f"\n📝 Примечание: {data['note']}" if data["note"] else ""
         await update.message.reply_text(
             f"✅ Записано!\n\n"
@@ -130,7 +130,7 @@ def main():
     conv_handler = ConversationHandler(
         entry_points=[
             CommandHandler("start", start),
-            MessageHandler(filters.Regex("^💸 Внести расход$"), start)
+            MessageHandler(filters.Regex("^💸 Внести операцию$"), start)
         ],
         states={
             DATE:     [MessageHandler(filters.TEXT & ~filters.COMMAND, get_date)],
